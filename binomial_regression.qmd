@@ -4,6 +4,7 @@ title: "Binomial Regression"
 bibliography: references/references.bib
 link-citations: TRUE
 ---
+
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 library(tidyverse) #for piping and data formatting ease
 library(ggplot2) #for plotting
@@ -12,7 +13,6 @@ library(caret) #provides the createDataPartition() call for testing/training
 library(nnet) #for multi-nomial regression
 library(mclust) #for gaussian mixed models
 ```
-
 
 The more auxiliary data we have available to us, the more complex, and
 hopefully accurate, of a model we can use to assign species to our sonar

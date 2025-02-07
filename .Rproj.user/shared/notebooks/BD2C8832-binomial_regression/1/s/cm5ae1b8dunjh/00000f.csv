@@ -1,5 +1,0 @@
-"0","predictions <- predict(model_1, newdata = sonar_data, type = ""response"")"
-"0","predicted_classes <- ifelse(predictions > 0.5, 1, 0)"
-"0",""
-"0","sonar_predicted<-sonar_data%>%cbind(predicted_classes)"
-"0","sonar_predicted$species=ifelse(sonar_predicted$predicted_classes==1,""A"",""B"")"

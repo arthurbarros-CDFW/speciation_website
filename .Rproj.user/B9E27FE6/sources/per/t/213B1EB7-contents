@@ -30,7 +30,7 @@ P(y=k)=\frac{e^{\beta_{0,k}+\beta_{1,k}*x_{1,y}+\beta_{2,k}*x_{2,y}+...+\beta_{M
 $$ {#eq-multinomial_regression}
 
 Where $K$ is the total number of different species $k$ and $M$ is the
-total number of explanatory variables. Similar to @eq-binom_reg, the
+total number of explanatory variables. Similar to our binomial regression, the
 above relies on regression coefficients associated with each explanatory
 variable and the $k$th outcome. Again with our example will utilize
 explanatory variables of date of observation, fish length (cm), water

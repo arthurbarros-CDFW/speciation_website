@@ -144,18 +144,6 @@ div.csl-indent {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">CMP Sonar Speciation (DRAFT)</a> 
-        <div class="sidebar-tools-main">
-    <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://github.com/arthurbarros-CDFW/speciation_website">
-            Source Code
-            </a>
-          </li>
-      </ul>
-    </div>
-</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -198,7 +186,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multinomial_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multinomial Regerssion</span></a>
+ <span class="menu-text">Multinomial Regression</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -225,7 +213,7 @@ div.csl-indent {
   <ul>
   <li><a href="#estimating-uncertainty" id="toc-estimating-uncertainty" class="nav-link active" data-scroll-target="#estimating-uncertainty"><em>Estimating uncertainty</em></a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/arthurbarros-CDFW/speciation_website/blob/main/binomial_regression.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -445,7 +433,7 @@ Number of Fisher Scoring iterations: 7</code></pre>
 <span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>  results<span class="ot">&lt;-</span>results<span class="sc">%&gt;%</span><span class="fu">rbind</span>(d)</span>
 <span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Based on the above model training and iterative testing, we see our model predicted the species of our test data with an average accuracy of 0.912 and an average error in abundance estimates of 3.561 %.</p>
+<p>Based on the above model training and iterative testing, we see our model predicted the species of our test data with an average accuracy of 0.911 and an average error in abundance estimates of 3.113 %.</p>
 <p>We’ve trained and tested our model, and have some benchmarks of accuracy in species ID and abundance estimates. Next we’ll have to generate a new sonar data set for this example that will incorporate length and flow data linked to our sonar counts. We can simulate this data similar to how we’ve done for our prior two examples here:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Simulate some example sonar data</span></span>

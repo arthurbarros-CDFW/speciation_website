@@ -16,7 +16,7 @@ website:
       - href: binomial_regression.qmd
         text: Binomial Regression
       - href: multinomial_regression.qmd
-        text: Multinomial Regerssion
+        text: Multinomial Regression
       - href: gmm.qmd
         text: Gaussian Mixed Modelling
       - href: further.qmd

@@ -3,7 +3,7 @@
     "path": "C:/Users/ABarros/Desktop/Analysis/CMP/CMPSonar/speciation_website/multinomial_regression.qmd",
     "project_path": "multinomial_regression.qmd",
     "type": "quarto_markdown",
-    "hash": "99523027",
+    "hash": "2083001517",
     "contents": "",
     "dirty": false,
     "created": 1738946198016.0,
@@ -17,15 +17,15 @@
         "rmdVisualCollapsedChunks": "",
         "rmdVisualModeLocation": "141:0",
         "docOutlineVisible": "1",
-        "cursorPosition": "1,30",
-        "scrollLine": "0"
+        "cursorPosition": "32,73",
+        "scrollLine": "28"
     },
     "folds": "",
-    "lastKnownWriteTime": 1738954724,
+    "lastKnownWriteTime": 1738963986,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1738954724868,
+    "last_content_update": 1738963986895,
     "read_only": false,
     "read_only_alternatives": []
 }
