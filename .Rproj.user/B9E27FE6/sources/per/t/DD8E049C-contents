@@ -4,11 +4,6 @@ project:
 website:
   title: "CMP Sonar Speciation (DRAFT)"
   sidebar:
-    tools:
-      - icon: github
-        menu:
-          - text: Source Code
-            href:  https://github.com/arthurbarros-CDFW/speciation_website
     contents:
       - href: index.qmd
         text: Objectives
@@ -26,6 +21,8 @@ website:
         text: Gaussian Mixed Modelling
       - href: further.qmd
         text: Further Steps
+  repo-url: https://github.com/arthurbarros-CDFW/speciation_website
+  repo-actions: [source] 
 
 format:
   html:
