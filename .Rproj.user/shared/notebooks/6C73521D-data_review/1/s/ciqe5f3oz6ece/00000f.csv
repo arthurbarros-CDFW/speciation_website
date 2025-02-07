@@ -1,0 +1,7 @@
+"0","# Plot the results "
+"0","ggplot(daily_sonar, aes(x = Week, y = Net_Movement)) +   "
+"0","  geom_bar(stat = ""identity"", fill = ""steelblue"") +   "
+"0","  labs(title = ""Simulated Sonar Detection Data"",        "
+"0","       x = ""Week"",        y = ""Net Movement"") +  "
+"0","  #scale_x_date(date_labels = ""%Y-%m"", date_breaks = ""1 month"") +   "
+"0","  theme_classic()"

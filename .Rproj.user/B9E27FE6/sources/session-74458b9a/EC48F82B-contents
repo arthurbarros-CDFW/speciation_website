@@ -1,0 +1,53 @@
+---
+title: "Further Info"
+
+bibliography: references/references.bib
+link-citations: TRUE
+---
+
+# What apportionment method is right for you?
+
+This methods documentation does not aim to dictate to sonar surveys the
+"correct" method to assign species to sonar fish counts. Choosing the
+right species apportionment method depends on the available auxiliary
+data, the degree of overlap in species covariate distributions (length,
+date, etc.), and the desired level of certainty. Simple methods like
+in-season cutoffs may be appropriate for systems with well-separated run
+timings, while in-season species proportioning provides a better
+alternative when some overlap exists. Logistic regression models allow
+for the incorporation of additional covariates, such as fish length and
+environmental variables, improving accuracy. For studies involving
+multiple species with overlapping distributions, multinomial logistic
+regression or Gaussian mixed models can offer robust solutions for
+species ID.
+
+-   There is no one-model-fits-all solution for speciating sonar counts.
+
+-   The more complex your fish community, the more complex the methods,
+    and the more detailed the data needed.
+
+-   The methods available to you depends on the detail and proximity of
+    the auxiliary data available for inference.
+
+# Potential future methods
+
+The speciation methods that have been reviewed are far from an
+exhaustive list of techniques that can utilize auxiliary data to inform
+sonar count species assignments. As the CMP Sonar Subgroup continues to
+explore methods of utilizing sonar imaging to enumerate migrating
+salmon, we hope to expand upon this list. Some potential avenues for
+further exploration include:
+
+-   Generalized Additive Models (GAMs) to capture non-linear
+    relationships between covariates and species identity.
+
+-   Incorporating acoustic telemetry as an auxiliary data set to expand
+    escapement estimates [@Maxwell2019].
+
+-   Utilizing a Bayesian framework to incorporate informative prior
+    knowledge and Bayesian updating as more data becomes available
+    [@Grote2014, @Fleischman2003].
+
+-   Exploring machine learning methods used to process sonar imagery
+    files to also incorporate statistical methods for automatic species
+    assignment.

@@ -1,0 +1,3 @@
+"0","# Bin the dates by week "
+"0","daily_sonar$Week <- as.Date(cut(daily_sonar$date, breaks = ""week"",  "
+"0","                                start.on.monday = TRUE))"

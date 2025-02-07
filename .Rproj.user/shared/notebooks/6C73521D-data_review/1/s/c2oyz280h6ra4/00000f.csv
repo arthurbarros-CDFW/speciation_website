@@ -1,0 +1,5 @@
+"0","# Create a dataframe with counts "
+"0","daily_sonar <- combined_counts%>%"
+"0","  group_by(species,date)%>%"
+"0","  tally()"
+"0","names(daily_sonar) <- c(""species"",""date"", ""Net_Movement"")  "

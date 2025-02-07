@@ -1,0 +1,270 @@
+---
+title: "Multinomial Regression"
+
+bibliography: references/references.bib
+link-citations: TRUE
+---
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+library(tidyverse) #for piping and data formatting ease
+library(ggplot2) #for plotting
+library(lubridate) #makes formatting dates a little easier
+library(caret) #provides the createDataPartition() call for testing/training
+library(nnet) #for multi-nomial regression
+library(mclust) #for gaussian mixed models
+
+sonar_data<-readRDS("data/sonar_data1.rds")
+aux_data<-readRDS("data/aux_data1.rds")
+flow_df<-readRDS("data/flow_df.rds")
+```
+
+# Logistic regression for multiple species
+
+We can expand our speciation model to incorporate more than two species
+using a "multinomial logistic regression". We can estimate the
+probability that a given sonar fish image $y$ is species $k$ using the
+equation:
+
+$$
+P(y=k)=\frac{e^{\beta_{0,k}+\beta_{1,k}*x_{1,y}+\beta_{2,k}*x_{2,y}+...+\beta_{M,k}*x_{M,y}}}{1+\sum^{K-1}_{j=1}{e^{\beta_{0,k}+\beta_{1,k}*x_{1,y}+\beta_{2,k}*x_{2,y}+...+\beta_{M,k}*x_{M,y}}}}
+$$ {#eq-multinomial_regression}
+
+Where $K$ is the total number of different species $k$ and $M$ is the
+total number of explanatory variables. Similar to @eq-binom_reg, the
+above relies on regression coefficients associated with each explanatory
+variable and the $k$th outcome. Again with our example will utilize
+explanatory variables of date of observation, fish length (cm), water
+flow (cfs). We'll generate a new set of auxiliary data, this time for
+three species. This simulated auxiliary data is for three species "A",
+"B", and "C", which have some amount of overlap in their run timing and
+sizes.
+
+```{r, m_log_regression_sim}
+#create new simulated auxiliary length and date for species C.
+
+#lengths
+lengths_C <- rnorm(150, mean=110, sd=10)
+
+#dates
+dates_C <- round(rnorm(150,mean = as.numeric(as.Date("2024-03-15")), sd = 20))
+
+#make dataframe
+aux_dataC <- data.frame(
+  length = c(lengths_C),
+  date = round(as.Date(dates_C,origin = "1970-01-01")),
+  species = factor(rep("C", times=150))
+)
+
+#join in flow we created in last section
+aux_dataC<-aux_dataC%>%
+  dplyr::left_join(flow_df,by="date")
+
+aux_data<-aux_data%>%
+  rbind(aux_dataC)
+```
+
+```{r m_regression_aux_plot,message=FALSE,warning=FALSE,echo=FALSE,fig.height=6,fig.width=5, fig.cap = "Plots showing date, length, and flow for expanded simulated auxiliary data with multiple species."}
+library(gridExtra)
+library(scales)
+p_dates<-ggplot(aux_data) +
+  # Histogram for Date
+  geom_histogram(aes(x = date, fill = species), bins = 40) +
+  theme_classic()+
+  scale_fill_manual(values = c('darkorange2','cyan3','darkgreen'),
+                    labels = c('A','B','C'))+
+  scale_x_date(date_breaks = "2 month", 
+                 labels=date_format("%b-%Y"),
+                 limits = as.Date(c(min(aux_data$date),max(aux_data$date))))
+  
+p_lengths<-ggplot(aux_data) +  
+  # Histogram for Length
+  geom_histogram(aes(x = length, fill = species), bins = 40) +
+  theme_classic()+
+  scale_fill_manual(values = c('darkorange2','cyan3','darkgreen'),
+                    labels = c('A','B','C'))
+  
+p_flow<-ggplot(flow_df) +  
+  # Histogram for Flow Conditions
+  geom_line(aes(x = date,y=Flow_cfs),
+           stat='identity') +
+  scale_x_date(date_breaks = "2 month", 
+                 labels=date_format("%b-%Y"),
+                 limits = as.Date(c(min(aux_data$date),max(aux_data$date))))+
+  theme_classic()+
+  ylab("flow (cfs)")
+grid.arrange(p_dates, p_lengths, p_flow) 
+```
+
+Recall that the `sonar_data` we've been utilizing thus far is only for
+two species, so next we'll add some data for a third species "C" into
+our set.
+
+```{r,m_reg_sonar_sim}
+#Simulate some example sonar data
+#lengths
+lengths_C <- rnorm(300, mean=110, sd=10)
+
+#dates
+dates_C <- round(rnorm(300,mean = as.numeric(as.Date("2024-03-15")), sd = 20))
+
+#make dataframe
+sonar_dataC <- data.frame(
+  length = c(lengths_C),
+  date = round(as.Date(dates_C,origin = "1970-01-01"))
+)
+
+#join in flow we created in last section
+sonar_dataC<-sonar_dataC%>%
+  dplyr::left_join(flow_df,by="date")
+
+sonar_data<-sonar_data%>%
+  rbind(sonar_dataC)
+```
+
+To predict species we can use a method similar to our binomial logistic
+regression but this time using the `multinom()` call from the `nnet`
+package to run a multinomial regression model. Again will begin by
+iteratively training and testing the model on our auxiliary data set to
+estimate the models accuracy.
+
+```{r, m_reg_model,warnings=FALSE,message=FALSE,results="hide"}
+suppressMessages(library(nnet))
+# Split data into training and testing sets
+set.seed(Sys.time()) #reset seed
+iterations=100
+results<-data.frame()
+for(i in 1:iterations){
+  train_index <- createDataPartition(aux_data$species, p = 0.7, list = FALSE) 
+  train_data <- aux_data[train_index, ]
+  test_data <- aux_data[-train_index, ]
+  
+  #use multinom() call for multinomial regression
+  model_iter <- multinom(species ~ as.numeric(date) + length + Flow_cfs,
+                    data = train_data)
+  test_data$species_predicted <- predict(model_iter, newdata = test_data)
+  accuracy <- sum(test_data$species_predicted == 
+                    test_data$species)/nrow(test_data)
+  
+  Ntrue_A<-sum(test_data$species=="A")
+  Ntrue_B<-sum(test_data$species=="B")
+  Ntrue_C<-sum(test_data$species=="C")
+  
+  Nest_A<-sum(test_data$species_predicted=="A")
+  Nest_B<-sum(test_data$species_predicted=="B")
+  Nest_C<-sum(test_data$species_predicted=="C")
+
+  error_A <- abs(Nest_A - Ntrue_A)
+  error_B <- abs(Nest_B - Ntrue_B)
+  error_C <- abs(Nest_C - Ntrue_C)
+
+  rel_error_A <- error_A / Ntrue_A
+  rel_error_B <- error_B / Ntrue_B
+  rel_error_C <- error_C / Ntrue_C
+  
+  MAPE <- mean(c(rel_error_A, rel_error_B, rel_error_C)) * 100
+  
+  d<-data.frame("accuracy"=accuracy,"MAPE"=MAPE)
+  results<-results%>%rbind(d)
+}
+```
+
+Based on the above model training and iterative testing, we see our
+model predicted the species of our test data with an average accuracy of
+`r round(mean(results), 3)` .
+
+Next we'll retrain our model using the entire auxiliary data set, and
+then use it to predict species of `sonar_data2`.
+
+```{r}
+model_2<-multinom(species ~ as.numeric(date) + length + Flow_cfs,
+                  data = aux_data)
+
+sonar_data$species <- predict(model_2, newdata = sonar_data, type = "class")
+```
+
+We can visualize our speciation results below, and see how they track
+with date and length.
+
+```{r, model2_plot,echo=FALSE,fig.height=5,fig.width=5, fig.cap = "Plot showing species assignments of sonar data using multinomial logistic regression.",warnings=FALSE,messages=FALSE}
+# Plot the results
+p_dates<-ggplot(sonar_data, aes(x = date, fill = species)) +
+  geom_histogram() +
+  labs(title = "Sonar Movement Data",
+       x = "Week",
+       y = "frequency") +
+  scale_fill_manual(values = c('maroon','darkgreen','lightblue'),
+                    labels = c('A','B','C'))+
+  theme_classic()
+  
+p_lengths<-ggplot(sonar_data, aes(x = length, fill = species)) +
+  geom_histogram() +
+  labs(title = "Sonar Movement Data",
+       x = "length (cm)",
+       y = "frequency") +
+  scale_fill_manual(values = c('maroon','darkgreen','lightblue'),
+                    labels = c('A','B','C'))+
+  theme_classic()
+
+grid.arrange(p_dates, p_lengths) 
+```
+
+```{r}
+N_est4<-sonar_data%>%
+  group_by(species)%>%
+  tally()
+```
+
+Our final estimates of abundance in this example are `r N_est4[1,2]`for
+species A, `r N_est4[2,2]` for species B, and `r N_est4[3,2]` for
+species C.
+
+## *Estimating uncertainty*
+
+Nothing fancy here, we can replicate our bootstrapping methods we used
+during for the logistic regression model just this time with our
+multinomial model.
+
+```{r,warnings=FALSE,message=FALSE,results="hide"}
+#bootstrapping boogie
+iterations<-100
+results<-data.frame()
+
+for(j in 1:iterations){
+  d <- sonar_data[sample(nrow(sonar_data), replace = TRUE), ]
+  p_classes <- predict(model_2, newdata = d, type = "class")
+
+  sonar_boot<-d%>%cbind(p_classes)
+  
+  N_A<-length(which(sonar_boot$p_classes=="A"))
+  N_B<-length(which(sonar_boot$p_classes=="B"))
+  N_C<-length(which(sonar_boot$p_classes=="C"))
+  iter<-data.frame('iteration'=j,"A"=N_A[1],"B"=N_B[1],"C"=N_C[1])
+  results<-results%>%rbind(iter)
+}
+
+#iteration total estimates
+iter_totals<-results%>%
+  group_by(iteration)%>%
+  dplyr::summarise(A=sum(A),
+                   B=sum(B),
+                   C=sum(C))
+
+#bounds
+A_stats <- quantile(iter_totals$A, probs = c(0.025, 0.975))
+B_stats <- quantile(iter_totals$B, probs = c(0.025, 0.975))
+C_stats <- quantile(iter_totals$C, probs = c(0.025, 0.975))
+```
+
+The above results show that our estimate of total abundance of species A
+in our sonar counts is `r N_est4[1,2]` with 95% CI
+\[`r ceiling(A_stats[1])`, `r ceiling(A_stats[2])`\], a count of
+`r N_est4[2,2]` with 95% CI \[`r ceiling(B_stats[1])`,
+`r ceiling(B_stats[2])`\] for species B, and a count of `r N_est4[3,2]`
+with 95% CI \[`r ceiling(C_stats[1])`, `r ceiling(C_stats[2])`\] for
+species C.
+
+```{r,echo=FALSE}
+saveRDS(aux_data,"data/aux_data2.rds")
+saveRDS(sonar_data,"data/sonar_data2.rds")
+saveRDS(flow_df,"data/flow_df.rds")
+```

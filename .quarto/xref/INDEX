@@ -1,0 +1,36 @@
+{
+  "index.qmd": {
+    "index.html": "61177eec"
+  },
+  "about.qmd": {
+    "about.html": "7325cf40"
+  },
+  "objectives.qmd": {
+    "objectives.tex": "3860781d",
+    "objectives.html": "a52b85e9"
+  },
+  "binomial_regression.qmd": {
+    "binomial_regression.html": "76135db4"
+  },
+  "data_review.qmd": {
+    "data_review.html": "8a84130f"
+  },
+  "further.qmd": {
+    "further.html": "cba4a559"
+  },
+  "gmm.qmd": {
+    "gmm.html": "a17689cf"
+  },
+  "inseason_cutoff.qmd": {
+    "inseason_cutoff.html": "d40ab60e"
+  },
+  "inseason_proportion.qmd": {
+    "inseason_proportion.html": "1afd429b"
+  },
+  "multinomial_regression.qmd": {
+    "multinomial_regression.html": "3b7287fa"
+  },
+  "references.qmd": {
+    "references.html": "fb9006a1"
+  }
+}

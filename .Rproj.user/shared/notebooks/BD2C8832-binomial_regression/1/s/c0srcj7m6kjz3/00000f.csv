@@ -1,0 +1,2 @@
+"0","model_1<-glm(species_index ~ as.numeric(date) + length + Flow_cfs,"
+"0","             data = aux_index, family = binomial)"

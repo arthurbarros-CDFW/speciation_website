@@ -1,0 +1,6 @@
+"0","# Predictions"
+"0","predictions <- predict(model_1, newdata = test_data, type = ""response"")"
+"0","predicted_classes <- ifelse(predictions > 0.5, 1, 0)"
+"0","species_predicted<-ifelse(predicted_classes==1,""A"",""B"")"
+"0",""
+"0","test_data<-test_data%>%cbind(species_predicted)"

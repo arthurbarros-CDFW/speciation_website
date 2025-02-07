@@ -1,0 +1,32 @@
+project:
+  type: website
+
+website:
+  title: "CMP Sonar Speciation"
+  navbar:
+    left:
+      - href: objectives.qmd
+        text: Objectives
+      - href: data_review.qmd
+        text: Simulating Sonar Data
+      - href: inseason_cutoff.qmd
+        text: In-season Cutoff
+      - href: inseason_proportion.qmd
+        text: In-season Proportions
+      - href: binomial_regression.qmd
+        text: Binomial Regression
+      - href: multinomial_regression.qmd
+        text: Multinomial Regerssion
+      - href: gmm.qmd
+        text: Gaussian Mixed Modelling
+      - href: further.qmd
+        text: Further Steps
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

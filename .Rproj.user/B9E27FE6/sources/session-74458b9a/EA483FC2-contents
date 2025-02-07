@@ -1,0 +1,115 @@
+---
+title: "Simulating Sonar Data"
+
+bibliography: references/references.bib
+link-citations: TRUE
+---
+
+Before we review speciation methods, we can set the baseline of what our
+sonar data set will look like. For a given period of survey, we can
+expect to have a data set that tells us the date, and the net movement
+of detections. For the examples in this document I'll be simulating both
+sonar and auxiliary data sets for ease of use and replication. I'll give
+a general outline in this section on how the data is simulated.
+
+There a few R packages used in this documentation that can be loaded
+here:
+
+```{r setup,message=FALSE,warning=FALSE}
+#load packages
+rm( list = ls()) #clear env
+library(tidyverse) #for piping and data formatting ease
+library(ggplot2) #for plotting
+library(lubridate) #makes formatting dates a little easier
+library(caret) #provides the createDataPartition() call for testing/training
+library(nnet) #for multi-nomial regression
+library(mclust) #for gaussian mixed models
+
+```
+
+We'll start by simulating a simpler sonar detection data set that
+involves two species with overlapping distributions of run timing. First
+we can simulate our fish movement data as having runs with normal
+distributions centered around two peak dates, which we'll define as
+`peakA` and `peakB`. We'll also make these dates and the date range
+numeric values so we can build distributions from them.
+
+```{r}
+# Identify peaks
+peakA <- as.numeric(as.Date("2023-11-10")) 
+peakB <- as.numeric(as.Date("2024-01-12"))
+```
+
+We can then create normal distributions of movement data centered around
+our peaks, and combine the data into one data set `combined_counts`,
+which we can then turn back into a date format for easy plotting. For
+this example we'll also assign each record a "true" species
+identification which we can use to test the accuracy of our methods.
+
+```{r}
+# Simulate counts around the peaks using normal distributions 
+set.seed(42)  # For reproducibility 
+nA=1000
+nB=850
+countsA <- data.frame(species="A",
+                      date=round(rnorm(n=nA, mean = peakA, sd = 22)))
+countsB <- data.frame(species="B",
+                      date=round(rnorm(n=nA, mean = peakB, sd = 20)))  
+# Combine the counts 
+combined_counts <- countsA%>%rbind(countsB)
+#combine distributions 
+combined_counts$date<-as.Date(combined_counts$date,origin = "1970-01-01") 
+```
+
+Next we'll convert the data into the `daily_sonar` data frame and do
+some additional formatting.
+
+```{r}
+# Create a dataframe with counts 
+daily_sonar <- combined_counts%>%
+  group_by(species,date)%>%
+  tally()
+names(daily_sonar) <- c("species","date", "Net_Movement")  
+```
+
+Now we can bin daily counts by week for easier plotting and
+visualization.
+
+```{r}
+# Bin the dates by week 
+daily_sonar$Week <- as.Date(cut(daily_sonar$date, breaks = "week",  
+                                start.on.monday = TRUE))
+```
+
+Our final `daily_sonar` data frame contains four columns: the "true"
+`species` ID we gave the count, the `date` of the observation, the
+`Net_Movement` (essentially count in this case), and the week. Remember
+that while we gave each simulated observation a "true" species code,
+either A or B, we wouldn't actually know that information in our real
+sonar data sets. We will be using the simulated species ID to test our
+speciation methods accuracy in the following sections.
+
+```{r}
+head(daily_sonar)
+```
+
+Let's plot the sonar data to see how it's distributed over our simulated
+survey period. We see two run peaks centered around the dates we set,
+and what looks like quite a bit of overlap in the the simulated
+detection timing.
+
+```{r, sonar data simulation plot,height=4, echo=FALSE, fig.cap = "Plot showing distribution of simulated sonar net movement detections."}
+# Plot the results 
+ggplot(daily_sonar, aes(x = Week, y = Net_Movement)) +   
+  geom_bar(stat = "identity", fill = "steelblue") +   
+  labs(title = "Simulated Sonar Detection Data",        
+       x = "Week",        y = "Net Movement") +  
+  #scale_x_date(date_labels = "%Y-%m", date_breaks = "1 month") +   
+  theme_classic()
+```
+
+```{r data_save,echo=FALSE}
+#load packages
+saveRDS(daily_sonar,"data/daily_sonar.rds")
+
+```

@@ -1,0 +1,202 @@
+---
+title: "In-season Cutoff"
+
+bibliography: references/references.bib
+link-citations: TRUE
+---
+
+Perhaps the simplest method to speciate between two different fish
+species in a study would be to incorporate historical run-time and
+catch/escapement data proximate to the sonar study area in a method we
+can refer to as an "in-season cutoff"[@Nolan2023]. Here we'll simulate
+some historical auxiliary count data for two different species, "A" and
+"B", using the same methods as above to get the following `weekly_aux`
+data.
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+library(tidyverse) #for piping and data formatting ease
+library(ggplot2) #for plotting
+library(lubridate) #makes formatting dates a little easier
+library(caret) #provides the createDataPartition() call for testing/training
+library(nnet) #for multi-nomial regression
+library(mclust) #for gaussian mixed models
+
+daily_sonar<-readRDS("data/daily_sonar.rds")
+```
+
+```{r, aux_sim_historic, ,message=FALSE,warning=FALSE,echo=FALSE}
+#1) Identify peaks
+h_peakA <- as.numeric(as.Date("2009-11-10"))
+h_peakB <- as.numeric(as.Date("2010-01-12"))
+
+#2) Simulate counts around the peaks using normal distributions
+set.seed(123)  # For reproducibility
+h_countsA <- round(rnorm(400, mean = h_peakA, sd = 20))
+h_countsB <- round(rnorm(325, mean = h_peakB, sd = 22))
+
+#3) Create dataframes with counts
+h_countsA <- as.data.frame(table(as.Date(h_countsA, origin = "1970-01-01")))
+h_countsB <- as.data.frame(table(as.Date(h_countsB, origin = "1970-01-01")))
+names(h_countsA) <- c("date", "Count")
+names(h_countsB) <- c("date", "Count")
+
+#4) Add species column
+h_countsA$species <- "A"
+h_countsB$species <- "B"
+
+#5) Combine both dataframes
+date_counts <- rbind(h_countsA, h_countsB)
+
+#6) Convert date column to date type
+date_counts$date <- as.Date(date_counts$date)
+
+#7) Bin the dates by week
+date_counts$Week <- cut(date_counts$date, breaks = "week",
+                        start.on.monday = TRUE)
+
+#8) Aggregate the counts by week and species
+weekly_aux <- date_counts %>%
+  group_by(Week, species) %>%
+  summarise(Total_Count = sum(Count)) %>%
+  ungroup()
+
+#9) Convert Week back to Date for plotting
+weekly_aux$Week <- as.Date(weekly_aux$Week)
+
+```
+
+```{r,sim_hatchery data overview}
+head(weekly_aux)
+```
+
+This auxiliary data set shows the weekly counts of our two target
+species for a run 13 years prior to our sonar data at a proximate
+location. Obviously a more proximate (in both space and time) auxiliary
+data set could be more representative of our sonar samples, and thus
+more applicable. However, often the auxiliary data available is not the
+most optimal, and so we have to use the best data available.
+
+This historical data set can be used to produce an "in-season cutoff",
+essentially finding a date in the historical data when the proportion of
+species B is greater than species A. We can then apply that date to our
+sonar data, and assign any fish observed before that date as "A" and
+after as "B". To utilize an "in-season cutoff" we need to find the week
+when the proportion of species B captured was higher than the count of
+species A. We can use the following code to first estimate the
+proportion of each species for each week fish were caught:
+
+```{r, find cutoff_1}
+# Calculate proportions and reshape in one step
+proportions_combined <- weekly_aux %>%
+  group_by(Week) %>%
+  mutate(total_n = sum(Total_Count)) %>%
+  mutate(proportion = Total_Count / total_n) %>%
+  select(Week, species, proportion) %>%
+  pivot_wider(names_from = species,
+              values_from = proportion,
+              names_prefix = "proportion_") %>%
+  ungroup()
+
+```
+
+Now we can easily find the first week in our data when the count of
+species B is greater than species A.
+
+```{r}
+# Find the first week where the proportion of species A is greater than B
+result <- proportions_combined %>%
+  filter(proportion_B > proportion_A) %>%
+  slice(1)
+
+result_week <- result$Week
+
+# Output the first week
+result_week
+```
+
+The above shows us that `r result_week` was the first week in which the
+count of species B was greater than the count of A in our auxiliary
+data.
+
+We can plot the distribution of the data here along with our cutoff:
+
+```{r,hatchery_sim_plot_historic,echo=FALSE, fig.cap = "Plot showing species counts of auxiliary historical hatchery data set. Dashed line represents 'in-season cutoff'."}
+# Plot the results
+ggplot(weekly_aux, aes(x = Week, y = Total_Count, fill = species)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Simulated Historical Auxiliary Data",
+       x = "Week",
+       y = "Count") +
+  geom_vline(xintercept = (result_week-3.5),linetype='dashed')+
+  scale_fill_manual(values = c('darkorange2','cyan3'),
+                    labels = c('A','B'))+
+  #scale_x_date(date_labels = "%Y-%m", date_breaks = "1 month") +
+  theme_classic()
+
+```
+
+Using this historical auxiliary data set, we can decide to set our
+cutoff to the date of `r result_week`, and assign any fish detection in
+our sonar data before that date as species A, and any after as species
+B.
+
+```{r,cutoff_assign}
+target_year<-2023
+cutoff_date<-as.Date(paste(target_year,
+                           month(result_week),day(result_week),sep="-"))
+
+daily_sonar<-daily_sonar
+daily_sonar$predicted_species<-
+  ifelse(daily_sonar$date<cutoff_date,'A','B')
+```
+
+We can now plot our sonar data and show the species assignments.
+
+```{r,cutoff_assign_plot,echo=FALSE, fig.cap = "Plot showing species assignments of sonar data using the 'In-season cutoff' method"}
+# Plot the results
+ggplot(daily_sonar, aes(x = Week, y = Net_Movement,
+                                 fill = predicted_species)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Speciated Sonar Movement Counts",
+       x = "Week",
+       y = "Net Movement") +
+  geom_vline(xintercept = (cutoff_date-3.5),linetype='dashed')+
+  scale_fill_manual(values = c('maroon','darkgreen'), labels = c('A','B'))+
+  #scale_x_date(date_labels = "%Y-%m", date_breaks = "1 month") +
+  theme_classic()
+```
+
+Finally we can estimate counts for each species in our sonar data.
+
+```{r,cutoff_estimate}
+N_est<-daily_sonar%>%
+  group_by(predicted_species)%>%
+  summarise(total=sum(Net_Movement))
+```
+
+With the above snippet we can see that our final estimates of sonar
+counts are `r N_est[1,2]` for species A and `r N_est[2,2]` for species
+B. We know that our simulated data had a count of `r sum(daily_sonar$species=="A")` for
+species A and `r sum(daily_sonar$species=="B")` for species B, so we had an error rate
+of `r 100*(1-(N_est[1,2]/sum(daily_sonar$species=="A")))`%.
+
+The above method of speciation, while simple, provides a straightforward
+approach for leveraging historical data to infer species composition in
+sonar detection studies. Key assumptions to realize when utilizing this
+method are:
+
+-   All fish being speciated are either one of two species.
+
+-   There is no overlap in run timing.
+
+-   Date based threshold of the auxiliary data is representative of the
+    sonar site.
+
+-   Date based threshold used is consistent between years.
+
+Real world systems will likely violate one or more of the above
+assumptions, so the use of this method is likely to bias species
+identifications and resulting count estimates. Our simulation had an
+overlap in run timing and variation in the distributions that resulted
+in an over-count of species B and an under-count of species A.
+ 

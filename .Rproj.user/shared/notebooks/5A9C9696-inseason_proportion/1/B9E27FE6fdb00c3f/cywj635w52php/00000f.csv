@@ -1,0 +1,5 @@
+"0",""
+"0","weekly_sonar_proportions<-dplyr::select(daily_sonar_proportions,"
+"0","                                       Week,date,"
+"0","                                       species=predicted_species,"
+"0","                                       assigned_count)"

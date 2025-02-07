@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CMP Sonar Speciation - Gaussian Mixed Modelling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">CMP Sonar Speciation</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./objectives.html" rel="" target="">
+ <span class="menu-text">Objectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data_review.html" rel="" target="">
+ <span class="menu-text">Simulating Sonar Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./inseason_cutoff.html" rel="" target="">
+ <span class="menu-text">In-season Cutoff</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./inseason_proportion.html" rel="" target="">
+ <span class="menu-text">In-season Proportions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./binomial_regression.html" rel="" target="">
+ <span class="menu-text">Binomial Regression</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./multinomial_regression.html" rel="" target="">
+ <span class="menu-text">Multinomial Regerssion</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./gmm.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Gaussian Mixed Modelling</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./further.html" rel="" target="">
+ <span class="menu-text">Further Steps</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gaussian-mixed-model-apportionment" id="toc-gaussian-mixed-model-apportionment" class="nav-link active" data-scroll-target="#gaussian-mixed-model-apportionment">Gaussian Mixed model apportionment</a>
+  <ul class="collapse">
+  <li><a href="#estimating-uncertainty" id="toc-estimating-uncertainty" class="nav-link" data-scroll-target="#estimating-uncertainty"><em>Estimating uncertainty</em></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Gaussian Mixed Modelling</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="gaussian-mixed-model-apportionment" class="level1">
+<h1>Gaussian Mixed model apportionment</h1>
+<p>An alternative to the logistic models is called a “Guassian Mixed Model” (GMM). The logistic regression models used previously involve assigning individuals to one species or another based on whether or not the probability exceeds a threshold. When their is a lot of overlap in distribution of lengths or dates, this species assignment method is subject to bias, especially when proportions of a given species are relatively one-sided <span class="citation" data-cites="Fleischman2003">(<a href="#ref-Fleischman2003" role="doc-biblioref">Fleischman and Burwen 2003</a>)</span>. While a GMM approach may not be as easily interpretable as the logistic regressions, and rely on an assumption of normality, they can handle uncertainty better, especially when dealing with significant overlap in species length and timing distributions.</p>
+<p>A general equation of the GMM utilized is:</p>
+<p><span class="math display">\[f(x,y)=\sum_{k=1}^{K}\pi_k*N((x,y)|\mu_k,\sigma_k^2) \]</span></p>
+<p>The above gives the probability density function of a dataset as a weighted sum of multiple Gaussian (normal) distributions. Each component <span class="math inline">\(k\)</span> represents a cluster in the data,of which there are a total of <span class="math inline">\(K\)</span>, for our example we expect 3 clusters for species “A”, “B”, and “C”. <span class="math inline">\((x,y)\)</span> are the observed data points (in our case length and date), and <span class="math inline">\(\pi_k\)</span> is the mixing proportion for component <span class="math inline">\(k\)</span>, which all sum to 1. <span class="math inline">\(N((x,y)|\mu_k,\sigma_k^2)\)</span> represents the Gaussian distribution for each of the <span class="math inline">\(k\)</span>-th components with a mean of <span class="math inline">\(\mu_k\)</span> and a variance of <span class="math inline">\(\sigma_k^2\)</span>.</p>
+<p>For our demonstration, we can use the same auxiliary and sonar data sets that we’ve already simulated before, and see how the GMM compares to the logistic regression methods we’ve used. We’ve already seen the distributions of these data, but we can visualize the 2D distribution as well:</p>
+<div class="cell" data-warnings="false" data-messages="false">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gmm_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption class="figure-caption">Plot of the 2D distributions of auxiliary data with species identities.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>With the above plot we can see distinct clusters of dates and lengths, with some overlap between species.</p>
+<p>We’ll start by loading the <code>mclust</code> package to utilize their <code>Mclust()</code> call to run a GMM on our data, and testing the model on the auxiliary data in the same way we’ve used in before. Note that in this for-loop, instead of using the predict function to set a given species ID based on a probability threshold, I’m estimating the abundance by summing the total probability for each species and using that as our abundance estimate.</p>
+<div class="cell" data-warnings="false" data-messages="false">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="fu">Sys.time</span>()) <span class="co">#reset seed</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>iterations<span class="ot">=</span><span class="dv">100</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">data.frame</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>gmm_data<span class="ot">&lt;-</span><span class="fu">select</span>(aux_data,length,date,Flow_cfs,species)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#note here that the Mclust requires date in a numeric format</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>gmm_data<span class="sc">$</span>num_date<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(gmm_data<span class="sc">$</span>date) </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>iterations){</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  train_index <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(gmm_data<span class="sc">$</span>species, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  train_data <span class="ot">&lt;-</span> gmm_data[train_index, ]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  test_data <span class="ot">&lt;-</span> gmm_data[<span class="sc">-</span>train_index, ]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  Ntrue_A<span class="ot">&lt;-</span><span class="fu">sum</span>(test_data<span class="sc">$</span>species<span class="sc">==</span><span class="st">"A"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  Ntrue_B<span class="ot">&lt;-</span><span class="fu">sum</span>(test_data<span class="sc">$</span>species<span class="sc">==</span><span class="st">"B"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  Ntrue_C<span class="ot">&lt;-</span><span class="fu">sum</span>(test_data<span class="sc">$</span>species<span class="sc">==</span><span class="st">"C"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Fit a Gaussian Mixture Model to the training data </span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  model_iter <span class="ot">&lt;-</span> <span class="fu">Mclust</span>(train_data[, <span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"num_date"</span>)], <span class="at">G=</span><span class="dv">3</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#summary(model_iter)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Predict species for the test data based on the trained model</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_iter, test_data[, <span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"num_date"</span>)])</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  test_data<span class="sc">$</span>species_predicted <span class="ot">&lt;-</span> <span class="fu">factor</span>(predictions<span class="sc">$</span>classification,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  accuracy <span class="ot">&lt;-</span> <span class="fu">sum</span>(test_data<span class="sc">$</span>species_predicted <span class="sc">==</span> </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                    test_data<span class="sc">$</span>species)<span class="sc">/</span><span class="fu">nrow</span>(test_data)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Change in abundance estimate:</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="co">#here I can sum the probability for each classification to </span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">#estimate total abundance</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">#instead of using the threshold classification method</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  Nest_A<span class="ot">&lt;-</span><span class="fu">sum</span>(predictions<span class="sc">$</span>z[,<span class="dv">1</span>])</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  Nest_B<span class="ot">&lt;-</span><span class="fu">sum</span>(predictions<span class="sc">$</span>z[,<span class="dv">2</span>])</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  Nest_C<span class="ot">&lt;-</span><span class="fu">sum</span>(predictions<span class="sc">$</span>z[,<span class="dv">3</span>])</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  error_A <span class="ot">&lt;-</span> <span class="fu">abs</span>(Nest_A <span class="sc">-</span> Ntrue_A)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  error_B <span class="ot">&lt;-</span> <span class="fu">abs</span>(Nest_B <span class="sc">-</span> Ntrue_B)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  error_C <span class="ot">&lt;-</span> <span class="fu">abs</span>(Nest_C <span class="sc">-</span> Ntrue_C)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  rel_error_A <span class="ot">&lt;-</span> error_A <span class="sc">/</span> Ntrue_A</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  rel_error_B <span class="ot">&lt;-</span> error_B <span class="sc">/</span> Ntrue_B</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  rel_error_C <span class="ot">&lt;-</span> error_C <span class="sc">/</span> Ntrue_C</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  MAPE <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(rel_error_A, rel_error_B, rel_error_C)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  d<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="st">"accuracy"</span><span class="ot">=</span>accuracy,<span class="st">"MAPE"</span><span class="ot">=</span>MAPE)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  results<span class="ot">&lt;-</span>results<span class="sc">%&gt;%</span><span class="fu">rbind</span>(d)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Based on the above model training and iterative testing, we see our model predicted the species of our test data with an average accuracy of 0.886, and estimated species abundance with an average error of 9.205.</p>
+<p>Now we can retrain our model using the entire auxiliary data set, and use it to predict species counts for our sonar_data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model_3<span class="ot">&lt;-</span><span class="fu">Mclust</span>(gmm_data[, <span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"num_date"</span>)], <span class="at">G=</span><span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note here that the Mclust requires date in a numeric format</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sonar_data<span class="sc">$</span>num_date<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(sonar_data<span class="sc">$</span>date)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_3, sonar_data[, <span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"num_date"</span>)])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sonar_data<span class="sc">$</span>species_predicted <span class="ot">&lt;-</span> <span class="fu">factor</span>(predictions<span class="sc">$</span>classification,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can plot our predicted species to see if the clustering generally fits that of our auxiliary data.</p>
+<div class="cell" data-warnings="false" data-messages="false">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gmm_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption class="figure-caption">Plot of the 2D distributions of sonar data with predicted species identities.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, instead of using the assigned species values, we’ll use the probability each fish is a given species, which will give us a total estimate of abundance. If we look at the <code>predictions$z</code> we see a record for each observation that gives the probability it is one of the three classes based on the model predictions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(predictions<span class="sc">$</span>z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             1            2            3
+[1,] 0.9999889 1.106059e-05 3.037456e-15
+[2,] 0.8699173 1.300606e-01 2.211427e-05
+[3,] 0.9484408 4.313523e-02 8.423995e-03
+[4,] 0.9992204 7.795544e-04 8.353405e-10
+[5,] 0.9856517 1.434752e-02 7.578460e-07
+[6,] 0.9998748 1.251561e-04 3.517768e-08</code></pre>
+</div>
+</div>
+<p>We can take the sum of each column to estimate the abundance of each species here:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Nest_A<span class="ot">&lt;-</span><span class="fu">round</span>(<span class="fu">sum</span>(predictions<span class="sc">$</span>z[,<span class="dv">1</span>]))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Nest_B<span class="ot">&lt;-</span><span class="fu">round</span>(<span class="fu">sum</span>(predictions<span class="sc">$</span>z[,<span class="dv">2</span>]))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Nest_C<span class="ot">&lt;-</span><span class="fu">round</span>(<span class="fu">sum</span>(predictions<span class="sc">$</span>z[,<span class="dv">3</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our estimates of abundance in this example are 1082 for species A, 741 for species B, and 327 for species C.</p>
+<section id="estimating-uncertainty" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-uncertainty"><em>Estimating uncertainty</em></h2>
+<p>Again we can replicate our bootstrapping methods we used to estimate uncertainty in prior methods.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#bootstrapping boogie</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>iterations<span class="ot">&lt;-</span><span class="dv">100</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">data.frame</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>iterations){</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> sonar_data[<span class="fu">sample</span>(<span class="fu">nrow</span>(sonar_data), <span class="at">replace =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_3, d[, <span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"num_date"</span>)])</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  d<span class="sc">$</span>species_predicted <span class="ot">&lt;-</span> <span class="fu">factor</span>(predictions<span class="sc">$</span>classification,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  N_A<span class="ot">&lt;-</span><span class="fu">sum</span>(predictions<span class="sc">$</span>z[,<span class="dv">1</span>])</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  N_B<span class="ot">&lt;-</span><span class="fu">sum</span>(predictions<span class="sc">$</span>z[,<span class="dv">2</span>])</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  N_C<span class="ot">&lt;-</span><span class="fu">sum</span>(predictions<span class="sc">$</span>z[,<span class="dv">3</span>])</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  iter<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="st">'iteration'</span><span class="ot">=</span>j,<span class="st">"A"</span><span class="ot">=</span>N_A[<span class="dv">1</span>],<span class="st">"B"</span><span class="ot">=</span>N_B[<span class="dv">1</span>],<span class="st">"C"</span><span class="ot">=</span>N_C[<span class="dv">1</span>])</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  results<span class="ot">&lt;-</span>results<span class="sc">%&gt;%</span><span class="fu">rbind</span>(iter)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#iteration total estimates</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>iter_totals<span class="ot">&lt;-</span>results<span class="sc">%&gt;%</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(iteration)<span class="sc">%&gt;%</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">A=</span><span class="fu">sum</span>(A),</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                   <span class="at">B=</span><span class="fu">sum</span>(B),</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                   <span class="at">C=</span><span class="fu">sum</span>(C))</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#bounds</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>A_stats <span class="ot">&lt;-</span> <span class="fu">quantile</span>(iter_totals<span class="sc">$</span>A, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>B_stats <span class="ot">&lt;-</span> <span class="fu">quantile</span>(iter_totals<span class="sc">$</span>B, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>C_stats <span class="ot">&lt;-</span> <span class="fu">quantile</span>(iter_totals<span class="sc">$</span>C, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The above results show that our estimate of total abundance of species A in our sonar counts is 1082 with 95% CI [1042, 1125], a count of 741 with 95% CI [702, 785] for species B, and a count of 327 with 95% CI [295, 355] for species C.</p>
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Fleischman2003" class="csl-entry" role="listitem">
+Fleischman, Steve J., and Debby L. Burwen. 2003. <span>“<span class="nocase">Mixture models for the species apportionment of hydroacoustic data, with echo-envelope length as the discriminatory variable</span>.”</span> <em>ICES Journal of Marine Science</em> 60 (3): 592–98. <a href="https://doi.org/10.1016/S1054-3139(03)00041-9">https://doi.org/10.1016/S1054-3139(03)00041-9</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,4 @@
+"0","N_est2<-weekly_sonar_proportions%>%"
+"0","  group_by(species)%>%"
+"0","  summarise(total=sum(assigned_count))"
+"0","N_est2"

@@ -1,0 +1,7 @@
+"0","# Accuracy"
+"0","accuracy <- sum(species_predicted == test_data$species) / nrow(test_data)"
+"0","print(paste(""Accuracy:"", round(accuracy, 3)))"
+"1","[1]"
+"1"," ""Accuracy: 0.917"""
+"1","
+"

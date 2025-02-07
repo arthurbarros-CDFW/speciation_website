@@ -1,0 +1,7 @@
+"0","target_year<-2023"
+"0","cutoff_date<-as.Date(paste(target_year,"
+"0","                           month(result_week),day(result_week),sep=""-""))"
+"0",""
+"0","daily_sonar<-daily_sonar"
+"0","daily_sonar$predicted_species<-"
+"0","  ifelse(daily_sonar$date<cutoff_date,'A','B')"

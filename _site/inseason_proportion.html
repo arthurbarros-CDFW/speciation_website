@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CMP Sonar Speciation - In-season species proportion</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">CMP Sonar Speciation</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./objectives.html" rel="" target="">
+ <span class="menu-text">Objectives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data_review.html" rel="" target="">
+ <span class="menu-text">Simulating Sonar Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./inseason_cutoff.html" rel="" target="">
+ <span class="menu-text">In-season Cutoff</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./inseason_proportion.html" rel="" target="" aria-current="page">
+ <span class="menu-text">In-season Proportions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./binomial_regression.html" rel="" target="">
+ <span class="menu-text">Binomial Regression</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./multinomial_regression.html" rel="" target="">
+ <span class="menu-text">Multinomial Regerssion</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./gmm.html" rel="" target="">
+ <span class="menu-text">Gaussian Mixed Modelling</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./further.html" rel="" target="">
+ <span class="menu-text">Further Steps</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#estimating-uncertainty" id="toc-estimating-uncertainty" class="nav-link active" data-scroll-target="#estimating-uncertainty"><em>Estimating uncertainty</em></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">In-season species proportion</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Let’s use our simulated data <code>daily_sonar</code> data again, however this time our auxiliary counts will be from the same year as our sonar data. This method determines the proportion of counts for each species in a given period of sonar data based on the proportions seen in a proximate (spatially and temporally) auxiliary data set. This is similar to methods used in <span class="citation" data-cites="Nolan2023">Nolan et al. (<a href="#ref-Nolan2023" role="doc-biblioref">2023</a>)</span>, <span class="citation" data-cites="Mora2018">Mora et al. (<a href="#ref-Mora2018" role="doc-biblioref">2018</a>)</span>, and suggested in <span class="citation" data-cites="Boughton2022">Boughton, Nelson, and Lacy (<a href="#ref-Boughton2022" role="doc-biblioref">2022</a>)</span>. The following simulated data is produced in the same manner as the historical auxiliary data we created, but this time representing count data collected the same season as our sonar data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate counts around the peaks using normal distributions</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>h_countsA <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">400</span>, <span class="at">mean =</span> <span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"2023-11-20"</span>)),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">sd =</span> <span class="dv">20</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>h_countsB <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">325</span>, <span class="at">mean =</span> <span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"2024-01-10"</span>)),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">sd =</span> <span class="dv">22</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataframes, add species columns, and combine in one step</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>date_counts <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="fu">table</span>(<span class="fu">as.Date</span>(h_countsA, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">date =</span> Var1, <span class="at">Count =</span> Freq) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">aux_species =</span> <span class="st">"A"</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="fu">table</span>(<span class="fu">as.Date</span>(h_countsB, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">date =</span> Var1, <span class="at">Count =</span> Freq) <span class="sc">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">aux_species =</span> <span class="st">"B"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Date column and bin by week</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>date_counts <span class="ot">&lt;-</span> date_counts <span class="sc">%&gt;%</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">Week =</span> <span class="fu">cut</span>(date, <span class="at">breaks =</span> <span class="st">"week"</span>, <span class="at">start.on.monday =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate the counts by week and species</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>aux_current <span class="ot">&lt;-</span> date_counts <span class="sc">%&gt;%</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Week, aux_species) <span class="sc">%&gt;%</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total_Count =</span> <span class="fu">sum</span>(Count), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Week =</span> <span class="fu">as.Date</span>(Week))  <span class="co"># Convert Week to Date type for plotting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="inseason_proportion_files/figure-html/hatchery_sim_plot_current-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Plot showing species counts of a current auxiliary catch data set.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Again we can calculate weekly species proportions for our auxiliary count data using the methods detailed in the last section:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>aux_proportions <span class="ot">&lt;-</span> aux_current <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Week) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_n =</span> <span class="fu">sum</span>(Total_Count),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">proportion =</span> Total_Count <span class="sc">/</span> total_n) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can utilize those weekly proportions from the proximate auxiliary counts to assign weekly proportions of species to our sonar count data. This is based on the assumption that the proportion of a given species in the sonar count is equal to the proportion of that species in our auxiliary data:</p>
+<p><span id="eq-prop"><span class="math display">\[
+P_{A,i} = \frac{N_{A,i}}{N_i}
+\tag{1}\]</span></span></p>
+<p>Where <span class="math inline">\(P_{A,i}\)</span> is the proportion of species A during period <span class="math inline">\(i\)</span>, <span class="math inline">\(N_{A,i}\)</span> is the number of fish of species A captured in our auxiliary data set during period <span class="math inline">\(i\)</span>, and <span class="math inline">\(N_i\)</span> is the total number of fish captured in our auxiliary data during period <span class="math inline">\(i\)</span>. A side note: if the auxiliary data is some distance away from the sonar counts, we may try and utilize a lag-time in our proportion estimates, so that the catch at the hatchery during week <span class="math inline">\(i\)</span> is representative sonar data from week <span class="math inline">\(i-1\)</span>.</p>
+<p>Start by joining our simulated <code>daily_sonar</code> data to the <code>hatchery_proportions</code> data we produced.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>daily_sonar_nospecies<span class="ot">&lt;-</span>daily_sonar<span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date,Week)<span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Net_Movement=</span><span class="fu">sum</span>(Net_Movement))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>daily_sonar_proportions<span class="ot">&lt;-</span>daily_sonar_nospecies<span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(aux_proportions,<span class="at">by=</span><span class="st">"Week"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you take a look at the <code>daily_sonar_proportions</code> data, you’ll see that our sonar movement data starts and ends several days outside the hatchery count date range. To deal with this we can assume that sonar movement counts before the first week of hatchery data are species A, and movement counts after the last week of hatchery data are species B. We can do that with the following code chunk:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the first and last hatch dates</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>first_aux_week <span class="ot">&lt;-</span> <span class="fu">first</span>(aux_proportions<span class="sc">$</span>Week)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>last_aux_week <span class="ot">&lt;-</span> <span class="fu">last</span>(aux_proportions<span class="sc">$</span>Week)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>daily_sonar_proportions<span class="sc">$</span>predicted_species<span class="ot">&lt;-</span><span class="cn">NA</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign species based on date conditions</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>daily_sonar_proportions <span class="ot">&lt;-</span> daily_sonar_proportions <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted_species =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(predicted_species) <span class="sc">&amp;</span> Week <span class="sc">&lt;</span> first_aux_week <span class="sc">~</span> <span class="st">"A"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(predicted_species) <span class="sc">&amp;</span> Week <span class="sc">&gt;</span> last_aux_week <span class="sc">~</span> <span class="st">"B"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(predicted_species) <span class="sc">~</span> aux_species </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(proportion), <span class="dv">1</span>, proportion)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>daily_sonar_proportions<span class="ot">&lt;-</span>daily_sonar_proportions<span class="sc">%&gt;%</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">assigned_count=</span><span class="fu">round</span>(proportion<span class="sc">*</span>Net_Movement))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next we can assign a proportion of each days sonar movement count to either of the two species based on the proportion of that species from the hatchery count data for that week.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>weekly_sonar_proportions<span class="ot">&lt;-</span>dplyr<span class="sc">::</span><span class="fu">select</span>(daily_sonar_proportions,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                       Week,date,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">species=</span>predicted_species,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                       assigned_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plotting the above data, we get results similar to what we had with the in-season cutoff, but here we have proportional data that shows overlap in species counts, so that we aren’t assuming there is no overlap in run timing.</p>
+<div class="cell" data-warnings="false">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="inseason_proportion_files/figure-html/prop_assign_plot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Plot showing species assignments of sonar data using a proportional method</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The above method of speciation is still relatively simple in it’s execution, and relies on the following assumptions:</p>
+<ul>
+<li><p>All fish passing through the sonar site are either one of two species.</p></li>
+<li><p>Auxiliary catch proportions are representative of the true proportions seen in sonar data.</p></li>
+</ul>
+<p>Now we can use the speciation above to estimate our seasonal abundance for each of the two species:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>N_est2<span class="ot">&lt;-</span>weekly_sonar_proportions<span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species)<span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total=</span><span class="fu">sum</span>(assigned_count))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>N_est2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  species total
+  &lt;chr&gt;   &lt;dbl&gt;
+1 A        1057
+2 B         943</code></pre>
+</div>
+</div>
+<p>Referencing our original simulated sonar data, we know we had 1000 individuals for species A and 850 for species B, so our accuracy in our end abundance estimates is pretty good. However we won’t know the true numbers when using real data, so we’ll need a way to estimate uncertainty.</p>
+<section id="estimating-uncertainty" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-uncertainty"><em>Estimating uncertainty</em></h2>
+<p>We can expand upon the in-season proportion method created above by using iterative “bootstrapping” to generate confidence intervals of our estimates. This is done iteratively re-sampling our auxiliary hatchery count data to assign species counts to our sonar data. This process is repeated for a set number of iterations to generate variance, which is then used to estimate confidence intervals. One advantage of bootstrapping is that it does not rely on assumptions of normality, making it a robust method for data with unknown distributions.</p>
+<p>We can begin the bootstrapping by writing a function that takes our auxiliary species count data (<code>aux_proportions</code>) for each week of the sonar survey and randomly samples the counts to assign species to the sonar movement data. (<a href="#fig-bootstrapping_concept">Figure&nbsp;1</a>).</p>
+<div id="fig-bootstrapping_concept" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/img_bootstrap.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Conceptual figure of bootstrapping weekly auxiliary count data to produce variance in species assignments.</figcaption>
+</figure>
+</div>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sonar_sampling <span class="ot">&lt;-</span> <span class="cf">function</span>(daily_sonar, aux_data) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  weeks <span class="ot">&lt;-</span> <span class="fu">unique</span>(daily_sonar<span class="sc">$</span>Week)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#estimate weekly proportions of auxiliary species counts</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  aux_proportions <span class="ot">&lt;-</span> aux_data <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Week) <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total_n =</span> <span class="fu">sum</span>(Total_Count),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">proportion =</span> Total_Count <span class="sc">/</span> total_n) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Predefine data frame for results</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  weekly_sonar <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"list"</span>, <span class="fu">length</span>(weeks))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get boundary weeks for aux_proportions</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  first_aux_week <span class="ot">&lt;-</span> <span class="fu">min</span>(aux_proportions<span class="sc">$</span>Week)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  last_aux_week <span class="ot">&lt;-</span> <span class="fu">max</span>(aux_proportions<span class="sc">$</span>Week)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(weeks)) {</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    week <span class="ot">&lt;-</span> weeks[i]</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get auxiliary data for the current week</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    wk_sp <span class="ot">&lt;-</span> aux_proportions <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Week <span class="sc">==</span> week)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    wk_sonar <span class="ot">&lt;-</span> daily_sonar <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Week <span class="sc">==</span> week)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create species vector or default to "A" or "B" based </span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">#on week range this is for weeks of sonar data</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">#that don't match up with weeks of aux data</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    sp_vec <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">nrow</span>(wk_sp) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rep</span>(wk_sp<span class="sc">$</span>aux_species, wk_sp<span class="sc">$</span>Total_Count)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (week <span class="sc">&lt;</span> first_aux_week) {</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">"A"</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (week <span class="sc">&gt;</span> last_aux_week) {</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"B"</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">character</span>(<span class="dv">0</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform sampling and count occurrences of each species</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(sp_vec) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>      samp_sonar <span class="ot">&lt;-</span> <span class="fu">sample</span>(sp_vec, <span class="fu">sum</span>(wk_sonar<span class="sc">$</span>Net_Movement),</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>                           <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>      samp_A <span class="ot">&lt;-</span> <span class="fu">sum</span>(samp_sonar <span class="sc">==</span> <span class="st">"A"</span>)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>      samp_B <span class="ot">&lt;-</span> <span class="fu">sum</span>(samp_sonar <span class="sc">==</span> <span class="st">"B"</span>)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>      samp_A <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>      samp_B <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store results in a list to avoid repeated data frame binding</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    weekly_sonar[[i]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Week =</span> week, <span class="at">A =</span> samp_A, <span class="at">B =</span> samp_B)</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Bind the list into a single data frame after the loop</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>  weekly_sonar <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, weekly_sonar)</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(weekly_sonar)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The above function takes our simulated data <code>daily_sonar</code> and <code>aux_data</code> and does the following:</p>
+<ul>
+<li><p>Makes a vector listing all the weeks of survey.</p></li>
+<li><p>Calculates the species proportions for each week of the auxiliary data.</p></li>
+<li><p>Runs a <code>for</code> loop that assigns a species to sonar counts by sampling from corresponding weeks of the auxiliary data.</p></li>
+<li><p>For weeks of sonar data outside of the range of aux data, the loop assigns species A to early counts, and species B to later counts.</p></li>
+</ul>
+<p>We can now use the above <code>sonar_sampling</code> function to “bootstrap” our data to estimate the distribution of our species counts generated with some sampling error. For this example, we repeat the sampling process using our function for 25 iterations in a simple <code>for</code> loop. When running bootstrapping yourself, you’ll likely want to aim for 500 to 1000 iterations, which will take quite a bit longer to run.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#bootstrapping boogie</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>iterations<span class="ot">&lt;-</span><span class="dv">100</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">data.frame</span>()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>iterations){</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  iter<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="st">'iteration'</span><span class="ot">=</span>j)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  d<span class="ot">&lt;-</span>iter<span class="sc">%&gt;%</span><span class="fu">cbind</span>(<span class="fu">sonar_sampling</span>(daily_sonar,aux_current))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  results<span class="ot">&lt;-</span>results<span class="sc">%&gt;%</span><span class="fu">rbind</span>(d)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  iteration       Week  A B
+1         1 2023-08-28  1 0
+2         1 2023-09-04  3 0
+3         1 2023-09-11  5 0
+4         1 2023-09-18 11 0
+5         1 2023-09-25 19 0
+6         1 2023-10-02 33 0</code></pre>
+</div>
+</div>
+<p>The <code>results</code> output of our bootstrapping shows weekly species counts for sonar data produced by our random sampling of auxiliary data. We can group the results together by iteration for an estimate of species total for each season, and then calculate lower and upper 95% confidence intervals using the <code>quantile()</code> call.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#iteration total estimates</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>iter_totals<span class="ot">&lt;-</span>results<span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(iteration)<span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">A=</span><span class="fu">sum</span>(A),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">B=</span><span class="fu">sum</span>(B))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#bounds</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>A_stats <span class="ot">&lt;-</span> <span class="fu">quantile</span>(iter_totals<span class="sc">$</span>A, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>B_stats <span class="ot">&lt;-</span> <span class="fu">quantile</span>(iter_totals<span class="sc">$</span>B, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>A_mean<span class="ot">&lt;-</span><span class="fu">mean</span>(iter_totals<span class="sc">$</span>A)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>B_mean<span class="ot">&lt;-</span><span class="fu">mean</span>(iter_totals<span class="sc">$</span>B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the above we see that our <strong>estimate of total abundance of species A in our sonar counts is 1057 with 95% CI [1043, 1078] and a count of 943 with 95% CI [922, 958] for species B</strong>.</p>
+<p>We can also estimate 95% confidence intervals for our weekly species assignments using the results output.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Weekly total estimates with confidence intervals</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>weekly_results <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Week) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">A_mean =</span> <span class="fu">mean</span>(A),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">A_lb =</span> <span class="fu">quantile</span>(A, <span class="at">probs =</span> <span class="fl">0.025</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">A_ub =</span> <span class="fu">quantile</span>(A, <span class="at">probs =</span> <span class="fl">0.975</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">B_mean =</span> <span class="fu">mean</span>(B),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">B_lb =</span> <span class="fu">quantile</span>(B, <span class="at">probs =</span> <span class="fl">0.025</span>),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">B_ub =</span> <span class="fu">quantile</span>(B, <span class="at">probs =</span> <span class="fl">0.975</span>),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Species"</span>, <span class="st">".value"</span>),</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_sep =</span> <span class="st">"_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="inseason_proportion_files/figure-html/boots_2.5_plot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Plot showing species assignments of sonar data using proportional bootstrapping to estimate confidence intervals (95%).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The above figure shows that during periods of run-timing overlap, our precision in estimation of species assignment decreases substantially. The more overlap in run-timing, the more bias we can expect in our speciation.</p>
+<p>The above method of speciation provides a straightforward approach for leveraging more contemporary auxiliary data to infer species composition in sonar detection studies. Using the species proportions from this auxiliary data set we assign species proportions to sonar data, and can iteratively resample the data through “bootstraping” to estimate confidence intervals. Key assumptions to realize when utilizing this method are:</p>
+<ul>
+<li><p>All fish being speciated are either one of two species.</p></li>
+<li><p>Species proportions in the auxiliary data is representative of the fish community at the sonar site.</p></li>
+</ul>
+<p>When considering auxiliary data sets to use for informing species apportionment, the more proximate the data to the sonar site, the more accurate species assignments will likely be.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Boughton2022" class="csl-entry" role="listitem">
+Boughton, David, Jennifer Nelson, and Michael K Lacy. 2022. <span>“<span class="nocase">Integration of Steelhead Viability Monitoring , Recovery Plans and Fisheries Management in the Southern Coastal Area</span>,”</span> 1–116.
+</div>
+<div id="ref-Mora2018" class="csl-entry" role="listitem">
+Mora, Ethan A., Ryan D. Battleson, Steven T. Lindley, Michael J. Thomas, Russ Bellmer, Liam J. Zarri, and A. Peter Klimley. 2018. <span>“<span class="nocase">Estimating the Annual Spawning Run Size and Population Size of the Southern Distinct Population Segment of Green Sturgeon</span>.”</span> <em>Transactions of the American Fisheries Society</em> 147 (1): 195–203. <a href="https://doi.org/10.1002/tafs.10009">https://doi.org/10.1002/tafs.10009</a>.
+</div>
+<div id="ref-Nolan2023" class="csl-entry" role="listitem">
+Nolan, Jesse, Erika Partee, Jennifer Jacobs, and Ryan Nelson. 2023. <span>“<span class="nocase">2021-2022 Sonar-derived estimates of Chinook Salmon Prepared by :</span>”</span> April. Tolowa Dee-ni’ Nation.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,5 @@
+"0","daily_sonar_nospecies<-daily_sonar%>%"
+"0","  group_by(date,Week)%>%"
+"0","  summarise(Net_Movement=sum(Net_Movement))"
+"0","daily_sonar_proportions<-daily_sonar_nospecies%>%"
+"0","  left_join(aux_proportions,by=""Week"")"

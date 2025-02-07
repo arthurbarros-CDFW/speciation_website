@@ -1,0 +1,6 @@
+"0",""
+"0","aux_proportions <- aux_current %>%"
+"0","  group_by(Week) %>%"
+"0","  mutate(total_n = sum(Total_Count),"
+"0","         proportion = Total_Count / total_n) %>%"
+"0","  ungroup()"
