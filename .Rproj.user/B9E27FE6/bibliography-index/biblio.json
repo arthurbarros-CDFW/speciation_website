@@ -1,4 +1,750 @@
 {
-    "sources": [],
+    "sources": [
+        {
+            "DOI": "10.1656/045.021.0207",
+            "ISSN": "10926194",
+            "abstract": "Dual-frequency identification sonar (DIDSON) offers important advantages over other sampling tools for observing pelagic and benthic fishes in situ. Because it relies on sound, DIDSON can detect fish in a non-destructive and non-intrusive manner. In our unique application, the equipment’s small size and low power requirements allow deployment from a kayak for increased maneuverability in complex habitats. Characteristics that typify echograms of different fishes can be extracted using multivariate ordination techniques, such as principal components analysis (PCA), with in situ groundtruthing. Here we present reference images, techniques, and human-observer-error estimates from DIDSON application. Together, these approaches enhance our ability to sample fishes and even observe certain behaviors in complex, turbid environments during a full diel cycle.  AlphaMed Press 2014.",
+            "author": [
+                {
+                    "family": "Able",
+                    "given": "Kenneth W."
+                },
+                {
+                    "family": "Grothues",
+                    "given": "Thomas M."
+                },
+                {
+                    "family": "Rackovan",
+                    "given": "Jenna L."
+                },
+                {
+                    "family": "Buderman",
+                    "given": "Frances E."
+                }
+            ],
+            "container-title": "Northeastern Naturalist",
+            "id": "Able2014",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "page": "192-209",
+            "title": "Application of mobile dual-frequency identification sonar (DIDSON) to fish in estuarine habitats",
+            "type": "article-journal",
+            "volume": "21"
+        },
+        {
+            "DOI": "10.1577/m07-116.1",
+            "ISSN": "0275-5947",
+            "abstract": "We present a semiautomated analytical ap- proach incorporating both image and acoustic processing techniques to apply to dual-frequency identification sonar (DIDSON) data. Our objectives were (1) to develop a standardized analysis pathway in order to reduce the effort associated with counting, measuring, and tracking fish targets; and (2) to empirically obtain estimates of basic target information (e.g., size, abundance, speed, and direction of travel). Analyses were conducted on DIDSON data collected at three different locations (the Kenai River, Alaska; Mobile River, Alabama; and Port Fourchon, Louisiana) with different equipment and deployment configurations. We developed an efficient postprocessing approach that can be applied to a variety of data sets, independent of user and deployment method. For two of the three data sets analyzed, the estimates of fish abundance derived from DIDSON analyses were not significantly different from the manual counts of DIDSON files. The analyses produced estimates of mean fish length, direction and speed of travel, and target surface area for all targets within each data set. A consistent analysis platform increases the acceptance and reliability of the DIDSON as a tool for fisheries surveys and further demonstrates the usefulness of DIDSON technology in fisheries applications.",
+            "annote": "Most of this is specific to methods of sonar image processing, and not important to my needs currently.",
+            "author": [
+                {
+                    "family": "Boswell",
+                    "given": "Kevin M."
+                },
+                {
+                    "family": "Wilson",
+                    "given": "Matthew P."
+                },
+                {
+                    "family": "Cowan",
+                    "given": "James H."
+                }
+            ],
+            "container-title": "North American Journal of Fisheries Management",
+            "id": "Boswell2008",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2008
+                    ]
+                ]
+            },
+            "page": "799-807",
+            "title": "A Semiautomated Approach to Estimating Fish Size, Abundance, and Behavior from Dual-Frequency Identification Sonar (DIDSON) Data",
+            "type": "article-journal",
+            "volume": "28"
+        },
+        {
+            "author": [
+                {
+                    "family": "Boughton",
+                    "given": "David"
+                },
+                {
+                    "family": "Nelson",
+                    "given": "Jennifer"
+                },
+                {
+                    "family": "Lacy",
+                    "given": "Michael K"
+                }
+            ],
+            "id": "Boughton2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "page": "1-116",
+            "title": "Integration of Steelhead Viability Monitoring , Recovery Plans and Fisheries Management in the Southern Coastal Area",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.1577/t09-173.1",
+            "ISSN": "0002-8487",
+            "abstract": "Experiments were conducted with a multibeam dual-frequency identification sonar (DIDSON) to evaluate the accuracy and precision of estimating lengths from images of tethered fish insonified at side aspect in an Alaskan river. Live tethered Chinook salmon Oncorhynchus tshawytscha and sockeye salmon O. nerka were suspended in front of a long-range DIDSON (1.2 MHz, 48 beams) equipped with an ultra-high-resolution lens. Lengths measured manually from DIDSON images were highly correlated with the actual lengths (R² = 0.90, RMSE = 5.76 cm). No range dependency in the accuracy of the range estimates was documented. We conclude that relatively accurate and precise estimates of fish length are now possible with certain DIDSON system configurations at up to 21 m.",
+            "annote": "not very useful to us",
+            "author": [
+                {
+                    "family": "Burwen",
+                    "given": "Debby L."
+                },
+                {
+                    "family": "Fleischman",
+                    "given": "Steven J."
+                },
+                {
+                    "family": "Miller",
+                    "given": "James D."
+                }
+            ],
+            "container-title": "Transactions of the American Fisheries Society",
+            "id": "Burwen2010",
+            "issue": "5",
+            "issued": {
+                "date-parts": [
+                    [
+                        2010
+                    ]
+                ]
+            },
+            "page": "1306-1314",
+            "title": "Accuracy and Precision of Salmon Length Estimates Taken from DIDSON Sonar Images",
+            "type": "article-journal",
+            "volume": "139"
+        },
+        {
+            "abstract": "We used an ARIS 1800 and a DIDSON (LR) multi-beam SONAR unit to monitor Chinook salmon escapement in the Elwha river on a daily basis from June 4 th , 2014 through September 10 th , 2014. We reviewed 20-minutes of each hour long file and then adjusted these raw counts for expansion to full hour counts, species composition, observer error, and filling data gaps. This process yielded a non-jack Chinook escapement estimate above the SONAR sites of 4,360 fish, with a coefficient of variation of 3.5",
+            "author": [
+                {
+                    "family": "Denton",
+                    "given": "Keith"
+                },
+                {
+                    "family": "Mchenry",
+                    "given": "Mike"
+                },
+                {
+                    "family": "Moses",
+                    "given": "Raymond"
+                },
+                {
+                    "family": "Ward",
+                    "given": "Eric"
+                },
+                {
+                    "family": "Liermann",
+                    "given": "Martin"
+                },
+                {
+                    "family": "Stefankiv",
+                    "given": "Oleksandr"
+                },
+                {
+                    "family": "Wells",
+                    "given": "Wilson"
+                },
+                {
+                    "family": "Pess",
+                    "given": "George"
+                }
+            ],
+            "id": "Denton2016",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "page": "1-36",
+            "title": "2016 Elwha River Chinook Escapement Estimate Based on DIDSON / ARIS Multi-Beam SONAR Data",
+            "type": "article-journal",
+            "volume": "1"
+        },
+        {
+            "DOI": "10.1002/nafm.10873",
+            "author": [
+                {
+                    "family": "Henderson",
+                    "given": "Mark J"
+                },
+                {
+                    "family": "Loomis",
+                    "given": "Chris M"
+                },
+                {
+                    "family": "Michel",
+                    "given": "Cyril J"
+                },
+                {
+                    "family": "Smith",
+                    "given": "Joe M"
+                },
+                {
+                    "family": "Iglesias",
+                    "given": "Ilysa S"
+                },
+                {
+                    "family": "Lehman",
+                    "given": "Brendan M"
+                },
+                {
+                    "family": "Demetras",
+                    "given": "Nicholas J"
+                },
+                {
+                    "family": "Huff",
+                    "given": "David D"
+                },
+                {
+                    "family": "Al",
+                    "given": "Henderson E T"
+                }
+            ],
+            "id": "Henderson2023",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "page": "1-18",
+            "title": "Estimates of Predator Densities Using Mobile DIDSON Surveys : Implications for Survival of Central Valley Chinook Salmon",
+            "type": "article-journal"
+        },
+        {
+            "abstract": "This TM series Is used for documentation and timely communication of preliminary results, interim reports, or special purpose information, and has not received complete formal review, editorial control, or detailed editing.",
+            "author": [
+                {
+                    "family": "Hirschberger",
+                    "given": "Wendy A"
+                },
+                {
+                    "family": "Smith",
+                    "given": "Gary B"
+                }
+            ],
+            "id": "Hirschberger1983",
+            "issued": {
+                "date-parts": [
+                    [
+                        1983
+                    ]
+                ]
+            },
+            "page": "1-50",
+            "title": "NOAA Technical Memorandum NMFS F/NWC-44",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.1016/j.icesjms.2005.08.015",
+            "ISSN": "10543139",
+            "abstract": "The reliability of sockeye-salmon (Oncorhynchus nerka) count data collected by a dual-frequency, identification sonar (DIDSON) system is evaluated on the basis of comparisons with visual counts of unconstrained migrating salmon and visual counts of salmon constrained to passing through an enumeration fence. Regressions fitted to the DIDSON count data and the visual count data from the enumeration fence were statistically indistinguishable from a line with slope = 1.0 passing through the origin, which we interpret as agreement in both counts. In contrast, the regressions fitted to the DIDSON count data and the unconstrained visual count data had slopes that were significantly <1.0 (p < 0.001) and are consistent with an interpretation of systematic bias in these data. When counts of both unconstrained and constrained fish from the DIDSON system were ≥50 fish event-1, repeated counts of the DIDSON files were observed to produce the same counts 98-99",
+            "annote": "Not useful, did not ID species",
+            "author": [
+                {
+                    "family": "Holmes",
+                    "given": "John A."
+                },
+                {
+                    "family": "Cronkite",
+                    "given": "George M. W."
+                },
+                {
+                    "family": "Enzenhofer",
+                    "given": "Hermann J."
+                },
+                {
+                    "family": "Mulligan",
+                    "given": "Timothy J."
+                }
+            ],
+            "container-title": "ICES Journal of Marine Science",
+            "id": "Holmes2006",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2006
+                    ]
+                ]
+            },
+            "keyword": "Aiming protocol,Data quality,High-frequency identification mode,Imaging sonar,Reliability,Salmon escapement,Sockeye salmon,Validation",
+            "page": "543-555",
+            "title": "Accuracy and precision of fish-count data from a \"dual-frequency identification sonar\" (DIDSON) imaging system",
+            "type": "article-journal",
+            "volume": "63"
+        },
+        {
+            "ISSN": "00081078",
+            "author": [
+                {
+                    "family": "Kerrie",
+                    "given": "Pipal"
+                },
+                {
+                    "family": "Mark",
+                    "given": "Jessop"
+                },
+                {
+                    "family": "David",
+                    "given": "Boughton"
+                },
+                {
+                    "family": "Peter",
+                    "given": "Adams"
+                }
+            ],
+            "container-title": "California Fish and Game",
+            "id": "Kerrie2010",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2010
+                    ]
+                ]
+            },
+            "page": "90-95",
+            "title": "Using dual-frequency identification sonar (DIDSON) to estimate adult steelhead escapement in the San Lorenzo river, California",
+            "type": "article-journal",
+            "volume": "96"
+        },
+        {
+            "DOI": "10.1111/j.1365-2400.2011.00843.x",
+            "ISSN": "0969997X",
+            "abstract": "This study addresses a fish species discrimination method based on normalised elliptic Fourier descriptors applied to acoustic shadows derived by Dual-frequency Identification Sonar (DIDSON). Acoustic shadows of templates (20, 30, 40 and 50cm) and live fish of four species [bream, Abramis brama (L.); barbel, Barbus barbus (L.); chub, Leuciscus cephalus (L.); and trout, Salmo trutta (L.)] were projected on a plate in an experimental set-up and tested on suitability for species discrimination. Twenty-centimetre templates were correctly classified in 97.5",
+            "author": [
+                {
+                    "family": "Langkau",
+                    "given": "M. C."
+                },
+                {
+                    "family": "Balk",
+                    "given": "H."
+                },
+                {
+                    "family": "Schmidt",
+                    "given": "M. B."
+                },
+                {
+                    "family": "Borcherding",
+                    "given": "J."
+                }
+            ],
+            "container-title": "Fisheries Management and Ecology",
+            "id": "Langkau2012",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2012
+                    ]
+                ]
+            },
+            "keyword": "Acoustic shadows,DIDSON,Discriminant function analysis,Fish species discrimination,Fourier analysis,Hydroacoustics",
+            "page": "313-322",
+            "title": "Can acoustic shadows identify fish species? A novel application of imaging sonar data",
+            "type": "article-journal",
+            "volume": "19"
+        },
+        {
+            "DOI": "10.1111/faf.12071",
+            "ISSN": "14672979",
+            "abstract": "European Union legislation, through the Water Framework Directive (2000/60/EC), as well as national legislation, such as the ’Grenelle Environnement’ (2007) in France, requires restoration of ecological connectivity in streams to improve free circulation of migratory fish. Different methods (e.g. capture by trap or net, telemetry, hydroacoustics) are used to evaluate the efficiency of fish passes to estimate the migratory species abundance and analyse changes in their within-river distributions. Among these methods, hydroacoustics is non-intrusive, allowing long-term observation and description of fish populations based on physical properties of sound in water. However, the main limit to hydroacoustic tools is their difficulty in identifying species. Initially designed for military purposes, dual-frequency identification sonar (DIDSON) has been used in environmental management for a decade. This acoustic camera uses higher frequencies and more sub-beams than common hydroacoustic tools, which improves image resolution and then enables observation of fish morphology and swimming behaviour. The ability to subtract static echoes from echograms and directly measure fish length improve the species-identification process. However, some limits have been identified, such as automatic dataset recording and the low range of the detection beam, which decreases accuracy, but efficient tools are now being developed to improve the accuracy of data recording (morphology, species identification, direction and speed). The new technological properties of acoustic cameras, such as the video-like visualization of the data, have greatly improved monitoring of diadromous fish populations (abundance, distribution and behaviour), helping river and fisheries managers and researchers in making decisions.",
+            "author": [
+                {
+                    "family": "Martignac",
+                    "given": "François"
+                },
+                {
+                    "family": "Daroux",
+                    "given": "Aurélie"
+                },
+                {
+                    "family": "Bagliniere",
+                    "given": "Jean Luc"
+                },
+                {
+                    "family": "Ombredane",
+                    "given": "Dominique"
+                },
+                {
+                    "family": "Guillard",
+                    "given": "Jean"
+                }
+            ],
+            "container-title": "Fish and Fisheries",
+            "id": "Martignac2015",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "keyword": "Acoustic camera,Dual-frequency identification sonar,Hydroacoustics,Migratory fish,Monitoring",
+            "page": "486-510",
+            "title": "The use of acoustic cameras in shallow waters: New hydroacoustic tools for monitoring migratory fish population. A review of DIDSON technology",
+            "type": "article-journal",
+            "volume": "16"
+        },
+        {
+            "author": [
+                {
+                    "family": "Nolan",
+                    "given": "Jesse"
+                },
+                {
+                    "family": "Partee",
+                    "given": "Erika"
+                },
+                {
+                    "family": "Jacobs",
+                    "given": "Jennifer"
+                },
+                {
+                    "family": "Nelson",
+                    "given": "Ryan"
+                }
+            ],
+            "id": "Nolan2023",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "number": "April",
+            "publisher": "Tolowa Dee-ni’ Nation",
+            "title": "2021-2022 Sonar-derived estimates of Chinook Salmon Prepared by :",
+            "type": "report"
+        },
+        {
+            "author": [
+                {
+                    "family": "Pipal",
+                    "given": "Kerrie"
+                },
+                {
+                    "family": "Adams",
+                    "given": "Peter B"
+                },
+                {
+                    "family": "Jessop",
+                    "given": "Mark"
+                }
+            ],
+            "id": "Pipal2014",
+            "issue": "June",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "title": "Operation of Dual Frequency identification sonar ( DIDSON ) to monitor adult steelhead ( Oncorhynchus mykiss ) in the central California coast OPERATION OF DUAL-FREQUENCY IDENTIFICATION SONAR ( DIDSON ) Kerrie Pipal National Oceanic and Atmospheric Admini",
+            "type": "article-journal"
+        },
+        {
+            "abstract": "Fish escapement is generally monitored using nonreplicated systematic sampling designs (e.g., via visual counts from towers or hydroacoustic counts). These sampling designs support a variety of methods for estimating the variance of the total escapement. Unfortunately, all the methods give biased results, with the magnitude of the bias being determined by the underlying process patterns. Fish escapement commonly exhibits positive autocorrelation and nonlinear patterns, such as diurnal and seasonal patterns. For these patterns, poor choice of variance estimator can needlessly increase the uncertainty managers have to deal with in sustaining fish populations.We illustrate the effect of sampling design and variance estimator choice on variance estimates of total escapement for anadromous salmonids from systematic samples of fish passage. Using simulated tower counts of sockeye salmon Oncorhynchus nerka escapement on the Kvichak River, Alaska, five variance estimators for nonreplicated systematic samples were compared to determine the least biased. Using the least biased variance estimator, four confidence interval estimators were compared for expected coverage and mean interval width. Finally, five systematic sampling designs were compared to determine the design giving the smallest average variance estimate for total annual escapement. For nonreplicated systematic samples of fish escapement, all variance estimators were positively biased. Compared to the other estimators, the least biased estimator reduced bias by, on average, from 12",
+            "author": [
+                {
+                    "family": "Reynolds",
+                    "given": "Joel H"
+                },
+                {
+                    "family": "Woody",
+                    "given": "Carol A"
+                },
+                {
+                    "family": "Gove",
+                    "given": "Nancy E"
+                },
+                {
+                    "family": "Fair",
+                    "given": "Lowell F"
+                }
+            ],
+            "container-title": "Am. Fish. S. S.",
+            "id": "Reynolds2007",
+            "issued": {
+                "date-parts": [
+                    [
+                        2007
+                    ]
+                ]
+            },
+            "page": "121-129",
+            "title": "Efficiently estimating salmon escapement uncertainty using systematically sampled data",
+            "type": "article-journal",
+            "volume": "54"
+        },
+        {
+            "URL": "https://www.sciencedirect.com/science/article/abs/pii/S0165783619302024",
+            "author": [
+                {
+                    "family": "Maxwell",
+                    "given": "Suzanne"
+                },
+                {
+                    "family": "Buck",
+                    "given": "Greg"
+                },
+                {
+                    "family": "Faulkner",
+                    "given": "April"
+                }
+            ],
+            "id": "Maxwell2019",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "publisher": "Alaska Department of Fish; Game",
+            "title": "Using Acoustic Telemetry to Expand Sonar Escapement Indices of Chinook Salmon to In-river abundance estimates.",
+            "type": "report"
+        },
+        {
+            "abstract": "Anthropogenic landscape alteration has negatively affected riverine habitat and hydrologic processes, which in turn has reduced the viability of salmonid species that depend on healthy watersheds for spawning, migration, rearing, growth, and survival. As society increasingly demands more water and other natural resources, the ability of managers to conserve these resources will be based, in part, on their ability to maintain and restore watershed processes. California’s salmon and steelhead trout populations have experienced drastic declines leading to both federal and State Endangered Species Act listings of many coastal stocks (Good et al. 2005, Williams et al. 2011, CDFG 2002, CDFG 2004). California has experienced pressure from the federal government, other Pacific States, fisheries organizations, and communities to improve status and trend monitoring of coastal salmon and steelhead trout. Of the four National Marine Fisheries Service’s Viable Salmonid Population (VSP; McElhany et al. 2000) parameters (abundance, spatial distribution, productivity, and diversity), adult abundance is the most fundamental. Establishment of DIDSON counting stations under California’s Coastal Salmonid Monitoring Plan (CMP) (Adams et al. 2011) in key locations will enable the Department to obtain vital adult return data to inform State, Trans-State, and federal management and recovery actions. Since 2006, dual frequency identification sonar cameras (DIDSONs) have been installed in California streams to enumerate adult salmon and steelhead trout during upstream migration. We report on the operational and biological results of initial deployments of DIDSON units across California for the primary purpose of counting returning anadromous salmonids. Principally, this work has been undertaken as part of CMP, but DIDSONs have also been deployed in several Central Valley watersheds. Additionally, we report on the laboratory experimental results conducted on a DIDSON unit at the University of California, Davis, and the sturgeon work performed in the Central Valley. This is the first comprehensive report of the use of DIDSON devices in California’s watersheds.",
+            "author": [
+                {
+                    "family": "Atkinson",
+                    "given": "Kristine"
+                },
+                {
+                    "family": "Lacy",
+                    "given": "Michael K"
+                },
+                {
+                    "family": "Bellmer",
+                    "given": "Russell"
+                }
+            ],
+            "id": "Atkinson2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "title": "Dual frequency identification sonar (DIDSON) deployment and preliminary performance as part of the California coastal salmonid monitoring plan",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.1139/cjfas-2013-0308",
+            "ISSN": "0706652X",
+            "abstract": "We investigated the fish community approaching the Veazie Dam on the Penobscot River, Maine, prior to implementation of a major dam removal and river restoration project. Multibeam sonar (dual-frequency identification sonar, DIDSON) surveys were conducted continuously at the fishway entrance from May to July in 2011. A 5",
+            "author": [
+                {
+                    "family": "Grote",
+                    "given": "Ann B."
+                },
+                {
+                    "family": "Bailey",
+                    "given": "Michael M."
+                },
+                {
+                    "family": "Zydlewski",
+                    "given": "Joseph D."
+                },
+                {
+                    "family": "Hightower",
+                    "given": "Joseph E."
+                }
+            ],
+            "container-title": "Canadian Journal of Fisheries and Aquatic Sciences",
+            "id": "Grote2014",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "page": "545-558",
+            "title": "Multibeam sonar (DIDSON) assessment of American shad (Alosa sapidissima) approaching a hydroelectric dam",
+            "type": "article-journal",
+            "volume": "71"
+        },
+        {
+            "author": [
+                {
+                    "family": "Metheny",
+                    "given": "Matthew"
+                }
+            ],
+            "genre": "PhD thesis",
+            "id": "Metheny2012",
+            "issued": {
+                "date-parts": [
+                    [
+                        2012
+                    ]
+                ]
+            },
+            "page": "37-39",
+            "publisher": "Humboldt State University",
+            "title": "Use of Dual Frequency Identification Sonar to Estimate Salmonid Escapement to Redwood Creek, Humboldt County",
+            "type": "thesis"
+        },
+        {
+            "abstract": "We tested the feasibility of using a dual frequency identification sonar (DIDSON) to count migrating adult salmon in turbid Alaskan rivers as a potential replacement for Bendix echo counting sonars. Our evaluation was divided into five main components: 1) a comparison of sockeye salmon (Oncorhynchus nerka) counts from DIDSON, Bendix sonar, and split beam sonar against visual tower and video counts; 2) a range test in a turbid river to test the DIDSON’s detection limits; 3) a comparison of two sonars (DIDSON and split beam) at the Miles Lake sonar site; 4) a comparison of two sonars (DIDSON and Bendix) at the Kenai River; and 5) a test of the performance of the DIDSON on rocky river bottoms and artificial substrates. The sonar, video, and tower methods produced similar sockeye salmon counts in the clear Wood River, although the split beam sonar was only tested at relatively low fish passage rates. We detected an artificial target 17-18 m from the transducer in the turbid Copper River. More total fish were counted from DIDSON images compared to counts obtained from split beam sonar echograms with the largest difference occurring in the first 5 m at the Miles Lake sonar site on the Copper River. The discrepancy was greater if downstream-moving fish were subtracted from upstream-moving fish. In the turbid Kenai River, a DIDSON (high frequency) and Bendix sonar comparison of fish counts produced mixed results with one dataset producing regression slopes close to one while a second dataset was more dissimilar. From DIDSON images, we observed a variety of fish behaviors that could impact counts made by more traditional sonars. We successfully deployed DIDSON and observed fish over rocky river bottoms and artificial substrates. Advantages of the DIDSON include easy-to-detect images of fish; a wider viewing angle, better coverage of the water column, simpler aiming and operation, accurate upstream-downstream target resolution, background subtraction feature, less multipathing, and reasonable measures of fish length out to 12 m. Disadvantages include limited range capabilities, high electronic data loads, and manual target counting. In addition, the majority of the DIDSON’s electronics are deployed in the river making the unit vulnerable to damage from debris. Better data storage methods and automated fish counting software are being investigated. The DIDSON exceeded our expectations for counting salmon in turbid rivers and is our choice for a Bendix sonar replacement.",
+            "author": [
+                {
+                    "family": "Maxwell",
+                    "given": "Suzanne L."
+                },
+                {
+                    "family": "Gove",
+                    "given": "Nancy E."
+                }
+            ],
+            "container-title": "Regional Information Report",
+            "id": "Maxwell2004",
+            "issue": "March",
+            "issued": {
+                "date-parts": [
+                    [
+                        2004
+                    ]
+                ]
+            },
+            "keyword": "Bendix, Bendix replacement, DIDSON, dual frequency",
+            "page": "ix-79",
+            "title": "The feasibility of estimating migrating salmon passage rates in turbid rivers using a Dual Frequency Idenification Sonar (DIDSON) 2002",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.1016/S1054-3139(03)00041-9",
+            "ISSN": "10543139",
+            "abstract": "For this side-looking, 200 kHz, split-beam sonar application, echo-envelope length has been shown to be predictive of fish size. In this study, this relationship is exploited to estimate the abundance of (large) chinook salmon (Oncorhynchus tshawytscha) in the presence of (smaller) sockeye salmon (Oncorhynchus nerka). The echo-length to fish-size relationship is too imprecise to ascertain the species of individual fish in the classic sense. However, the frequency distribution of echo-length measurements contains information on the relative abundance of chinook and sockeye salmon. The use of echo-length measurements in a mixture model is explored in order to estimate the proportion of total fish passage that comprised chinook salmon. Inputs to the model include empirical estimates of the length-frequency distribution for each species, parameter estimates from the regression relationship of echo-length to fish-length, and echo-length measurements from individual, ensonified fish. Outputs are estimates of the proportions of chinook and sockeye salmon in the river. The advantages of the mixture-model approach over threshold-based discrimination are discussed. Conditional maximum likelihood and Bayesian versions of the model are described. The method can be generalized to other hydroacoustic measurements, including target strength and other discrimination problems.  2003 International Council for the Exploration of the Sea. Published by Elsevier Science Ltd. All rights reserved.",
+            "author": [
+                {
+                    "family": "Fleischman",
+                    "given": "Steve J."
+                },
+                {
+                    "family": "Burwen",
+                    "given": "Debby L."
+                }
+            ],
+            "container-title": "ICES Journal of Marine Science",
+            "id": "Fleischman2003",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2003
+                    ]
+                ]
+            },
+            "keyword": "Bayesian statistics,Classification,Discrimination,Hydroacoustics,Mixture models,Sonar,WinBUGS",
+            "page": "592-598",
+            "title": "Mixture models for the species apportionment of hydroacoustic data, with echo-envelope length as the discriminatory variable",
+            "type": "article-journal",
+            "volume": "60"
+        },
+        {
+            "annote": "So overall, we can use DIDSON measurements instead of ELSD variance... but can we still use the mixture models to estimate comp based on size?",
+            "author": [
+                {
+                    "family": "Echo",
+                    "given": "Understanding"
+                },
+                {
+                    "family": "Standard",
+                    "given": "Length"
+                },
+                {
+                    "family": "River",
+                    "given": "Kenai"
+                }
+            ],
+            "id": "Echo",
+            "page": "4-6",
+            "title": "Understanding Echo Length Standard Deviation ( ELSD ) as it is used to produce sonar estimates for Kenai River king salmon — FAQ",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.1002/tafs.10009",
+            "ISSN": "15488659",
+            "abstract": "The Southern Distinct Population Segment of Green Sturgeon Acipenser medirostris spawns in the Sacramento River, California, and is listed as a threatened species under the U.S. Endangered Species Act. We estimated the spawning run size and population size in 2010–2015 by using dual-frequency identification sonar (DIDSON) sampling, underwater video camera species identification, and acoustic tag detections. Spawning run size varied from 336 to 1,236 individuals. We estimated the total population size to be 17,548 individuals (95",
+            "author": [
+                {
+                    "family": "Mora",
+                    "given": "Ethan A."
+                },
+                {
+                    "family": "Battleson",
+                    "given": "Ryan D."
+                },
+                {
+                    "family": "Lindley",
+                    "given": "Steven T."
+                },
+                {
+                    "family": "Thomas",
+                    "given": "Michael J."
+                },
+                {
+                    "family": "Bellmer",
+                    "given": "Russ"
+                },
+                {
+                    "family": "Zarri",
+                    "given": "Liam J."
+                },
+                {
+                    "family": "Klimley",
+                    "given": "A. Peter"
+                }
+            ],
+            "container-title": "Transactions of the American Fisheries Society",
+            "id": "Mora2018",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "page": "195-203",
+            "title": "Estimating the Annual Spawning Run Size and Population Size of the Southern Distinct Population Segment of Green Sturgeon",
+            "type": "article-journal",
+            "volume": "147"
+        }
+    ],
     "project_biblios": []
 }

@@ -7,17 +7,17 @@ link-citations: TRUE
 
 {{< pagebreak >}}
 
-My goal with this write up is to provide examples of ways auxiliary data
-can be used to inform the speciation of sonar fish imaging data. This is
-part of an ongoing effort by the California (Coastal) Monitoring Plan
-(CMP) Sonar Subgroup to provide support to survey efforts using sonar to
-estimate abundances of migrating adult salmonids. Often distinguishing
-species for a given fish using a sonar image can be difficult due to
-images that are low-resolution and at an angle that makes identification
-difficult. The difficulty of accurate speciation can be compounded in
-systems when many different species are present at the same time,
-especially if those fish are of similar size classes and produce similar
-acoustic profiles.
+This is a draft write up that aims to provide examples of ways auxiliary
+data can be used to inform the speciation of sonar fish imaging data.
+This is part of an ongoing effort by the California (Coastal) Monitoring
+Plan (CMP) Sonar Subgroup to provide support to survey efforts using
+sonar to estimate abundances of migrating adult salmonids. Often
+distinguishing species for a given fish using a sonar image can be
+difficult due to images that are low-resolution and at an angle that
+makes identification difficult. The difficulty of accurate speciation
+can be compounded in systems when many different species are present at
+the same time, especially if those fish are of similar size classes and
+produce similar acoustic profiles.
 
 I do not aim to provide a "blanket" method for species apportionment
 that can be applied to all sonar imaging studies. Each watershed is

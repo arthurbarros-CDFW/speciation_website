@@ -2,10 +2,15 @@ project:
   type: website
   output-dir: docs
 website:
-  title: "CMP Sonar Speciation"
-  navbar:
-    left:
-      - href: objectives.qmd
+  title: "CMP Sonar Speciation (DRAFT)"
+  sidebar:
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href:  https://github.com/arthurbarros-CDFW/speciation_website
+    contents:
+      - href: index.qmd
         text: Objectives
       - href: data_review.qmd
         text: Simulating Sonar Data
